@@ -1,0 +1,52 @@
+name: Generate ebook PDF
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'copywriting-na-pratica.html'
+      - '.github/workflows/ebook-pdf.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+      - name: Render print-ready PDF
+        run: |
+          mkdir -p dist
+          cat > render-pdf.cjs <<'EOF'
+          const { chromium } = require('playwright');
+          const path = require('path');
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage();
+            await page.goto('file://' + path.resolve('copywriting-na-pratica.html'), { waitUntil: 'networkidle' });
+            await page.pdf({
+              path: 'dist/copywriting-na-pratica.pdf',
+              format: 'A5',
+              printBackground: true,
+              preferCSSPageSize: true,
+              displayHeaderFooter: false,
+              margin: { top: '0mm', right: '0mm', bottom: '0mm', left: '0mm' }
+            });
+            await browser.close();
+          })().catch(err => { console.error(err); process.exit(1); });
+          EOF
+          node render-pdf.cjs
+      - name: Commit generated PDF
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'Gera PDF diagramado do ebook'
+          file_pattern: 'dist/copywriting-na-pratica.pdf'
