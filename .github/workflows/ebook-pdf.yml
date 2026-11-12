@@ -1,15 +1,16 @@
-name: Generate ebook PDF
+name: Generate ebook PDFs
 on:
   push:
     branches: [main]
     paths:
       - 'copywriting-na-pratica.html'
+      - 'biblioteca/*.html'
       - '.github/workflows/ebook-pdf.yml'
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
-  build-pdf:
+  build-pdfs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,30 +24,39 @@ jobs:
           npm init -y
           npm install playwright
           npx playwright install --with-deps chromium
-      - name: Render print-ready PDF
+      - name: Render all ebooks as PDFs
         run: |
           mkdir -p dist
-          cat > render-pdf.cjs <<'EOF'
+          cat > render-pdfs.cjs <<'EOF'
           const { chromium } = require('playwright');
           const path = require('path');
+          const books = [
+            ['copywriting-na-pratica.html', 'dist/copywriting-na-pratica.pdf'],
+            ['biblioteca/hooks-que-prendem.html', 'dist/hooks-que-prendem.pdf'],
+            ['biblioteca/marketing-para-servicos.html', 'dist/marketing-para-servicos.pdf'],
+            ['biblioteca/eap-content.html', 'dist/eap-content.pdf']
+          ];
           (async () => {
             const browser = await chromium.launch({ headless: true });
-            const page = await browser.newPage();
-            await page.goto('file://' + path.resolve('copywriting-na-pratica.html'), { waitUntil: 'networkidle' });
-            await page.pdf({
-              path: 'dist/copywriting-na-pratica.pdf',
-              format: 'A5',
-              printBackground: true,
-              preferCSSPageSize: true,
-              displayHeaderFooter: false,
-              margin: { top: '0mm', right: '0mm', bottom: '0mm', left: '0mm' }
-            });
+            for (const [source, output] of books) {
+              const page = await browser.newPage();
+              await page.goto('file://' + path.resolve(source), { waitUntil: 'networkidle' });
+              await page.pdf({
+                path: output,
+                format: 'A5',
+                printBackground: true,
+                preferCSSPageSize: true,
+                displayHeaderFooter: false,
+                margin: { top: '0mm', right: '0mm', bottom: '0mm', left: '0mm' }
+              });
+              await page.close();
+            }
             await browser.close();
           })().catch(err => { console.error(err); process.exit(1); });
           EOF
-          node render-pdf.cjs
-      - name: Commit generated PDF
+          node render-pdfs.cjs
+      - name: Commit generated PDFs
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'Gera PDF diagramado do ebook'
-          file_pattern: 'dist/copywriting-na-pratica.pdf'
+          commit_message: 'Gera PDFs da biblioteca de ebooks'
+          file_pattern: 'dist/*.pdf'
