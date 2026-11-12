@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#202020">
+<title>Biblioteca de Marketing</title>
+<style>
+:root{--red:#b3262d;--ink:#252525;--muted:#737373;--line:#e5e5e5;--paper:#fff;--bg:#f3f3f3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Arial,sans-serif}
+header{background:#202020;color:#fff;padding:54px max(22px,calc((100% - 1120px)/2)) 46px}
+header small{color:#e8a1a4;letter-spacing:2px;font-weight:700}h1{font-size:clamp(34px,6vw,58px);line-height:1.04;max-width:700px;margin:18px 0 12px;letter-spacing:-2px}header p{color:#ccc;max-width:620px;margin:0}
+main{max-width:1120px;margin:38px auto;padding:0 22px 70px}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:24px}
+input{flex:1;min-width:220px;border:1px solid #ccc;padding:14px 16px;border-radius:4px;font-size:15px;background:white}
+.count{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);padding:24px;border-radius:5px;display:flex;flex-direction:column;min-height:265px;box-shadow:0 3px 14px #00000008}
+.tag{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--red);font-weight:700}
+.card h2{font-size:22px;line-height:1.18;margin:15px 0 10px;letter-spacing:-.5px}
+.card p{color:#666;font-size:14px;line-height:1.55;margin:0 0 22px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:auto}
+a.btn{display:inline-block;text-decoration:none;background:var(--ink);color:white;padding:10px 13px;border-radius:3px;font-size:13px;font-weight:700}
+a.btn.secondary{background:#f1f1f1;color:#333}
+footer{border-top:1px solid var(--line);margin-top:35px;padding-top:18px;color:#888;font-size:12px}
+@media(max-width:600px){header{padding-top:38px}.card{min-height:0}}
+</style>
+</head>
+<body>
+<header><small>BIBLIOTECA DIGITAL · EDIÇÃO DE ESTUDO</small><h1>Marketing, conteúdo e copywriting.</h1><p>Uma biblioteca independente para estudar estratégias, transformar ideias em conteúdo e aplicar técnicas de comunicação no teu negócio.</p></header>
+<main>
+<div class="tools"><input id="search" type="search" placeholder="Pesquisar ebooks por título ou tema…" aria-label="Pesquisar ebooks"><span class="count" id="count">4 ebooks</span></div>
+<section class="grid" id="library">
+<article class="card" data-search="copywriting na prática escrita persuasão clientes vendas">
+<span class="tag">Copywriting · Fundamentos</span><h2>Copywriting na Prática</h2><p>Os fundamentos da escrita persuasiva, os seis P's, os cinco C's, hooks, chamadas para ação, clientes e monetização.</p><div class="actions"><a class="btn" href="copywriting-na-pratica.html">Ler ebook</a><a class="btn secondary" href="dist/copywriting-na-pratica.pdf" download>Descarregar PDF</a></div>
+</article>
+<article class="card" data-search="hooks que prendem atenção vídeos curtos psicologia retenção">
+<span class="tag">Vídeo curto · Atenção</span><h2>Hooks que Prendem</h2><p>Como interromper o scroll, alinhar texto, imagem e fala e manter a atenção nos primeiros segundos do vídeo.</p><div class="actions"><a class="btn" href="biblioteca/hooks-que-prendem.html">Ler ebook</a><a class="btn secondary" href="biblioteca/hooks-que-prendem.html#pdf">Criar PDF</a></div>
+</article>
+<article class="card" data-search="marketing serviços empresas consultoria agências coaches funil clientes benefícios">
+<span class="tag">Marketing · Serviços</span><h2>Marketing para Negócios de Serviços</h2><p>Venda resultados em vez de processos, traduza funcionalidades em benefícios e construa um funil de seis etapas para conquistar clientes.</p><div class="actions"><a class="btn" href="biblioteca/marketing-para-servicos.html">Ler ebook</a><a class="btn secondary" href="biblioteca/marketing-para-servicos.html#pdf">Criar PDF</a></div>
+</article>
+<article class="card" data-search="EAP content conteúdo câmera conversa storytelling vídeos YouTube Instagram TikTok">
+<span class="tag">Conteúdo · Produção</span><h2>EAP Content: Conteúdo que Conversa</h2><p>Um método simples para gravar com a câmara, contar histórias, construir opinião e manter consistência sem depender de grandes edições.</p><div class="actions"><a class="btn" href="biblioteca/eap-content.html">Ler ebook</a><a class="btn secondary" href="biblioteca/eap-content.html#pdf">Criar PDF</a></div>
+</article>
+</section>
+<footer>Biblioteca independente · Os ebooks abrem em páginas próprias. Em cada leitura podes guardar o conteúdo como PDF através do botão de impressão.</footer>
+</main>
+<script>
+const search=document.getElementById('search'),cards=[...document.querySelectorAll('.card')],count=document.getElementById('count');
+search.addEventListener('input',()=>{const q=search.value.toLocaleLowerCase('pt');let n=0;cards.forEach(c=>{const ok=(c.innerText+' '+c.dataset.search).toLocaleLowerCase('pt').includes(q);c.hidden=!ok;if(ok)n++});count.textContent=n+' ebook'+(n===1?'':'s')});
+</script>
+</body></html>
