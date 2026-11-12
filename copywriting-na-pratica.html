@@ -6,52 +6,55 @@
 <meta name="description" content="Copywriting na Prática, de Cristo Taty. Um guia directo, humano e aplicável para pesquisar, escrever, testar e melhorar anúncios.">
 <title>Copywriting na Prática — Cristo Taty</title>
 <style>
-:root{--ink:#202820;--muted:#68736b;--green:#245b43;--gold:#bd9556;--paper:#fffdf8;--line:#e6e0d4}
+:root{--ink:#303030;--muted:#707070;--green:#B3262D;--gold:#B3262D;--paper:#ffffff;--line:#dedede}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#e9e8e2;color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.72}
-.toolbar{position:sticky;top:0;z-index:5;display:flex;justify-content:center;gap:12px;padding:12px;background:#1e352b;color:white;font-family:Arial,sans-serif}
-.toolbar button{border:1px solid #d4c29f;background:#f5f0e5;color:#20382c;border-radius:4px;padding:11px 18px;font-weight:700;cursor:pointer}
+body{margin:0;background:#eeeeee;color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.72}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;justify-content:center;gap:12px;padding:12px;background:#303030;color:white;font-family:Arial,sans-serif}
+.toolbar button{border:1px solid #B3262D;background:#B3262D;color:#ffffff;border-radius:4px;padding:11px 18px;font-weight:700;cursor:pointer}
 .toolbar span{align-self:center;font-size:12px;color:#e4e9e4}
 .book{width:min(900px,100%);margin:28px auto;background:var(--paper);box-shadow:0 12px 45px #0002}
 .page{min-height:1120px;padding:76px 82px 72px;position:relative;page-break-after:always;break-after:page;border-bottom:1px solid var(--line);background:var(--paper)}
 .page:last-child{page-break-after:auto;break-after:auto}
-.page:after{content:"COPYWRITING NA PRÁTICA  ·  CRISTO TATY";position:absolute;bottom:30px;left:82px;right:82px;border-top:1px solid var(--line);padding-top:10px;font:10px Arial,sans-serif;letter-spacing:1.3px;color:#899087}
-.page .number{position:absolute;right:82px;bottom:29px;font:11px Arial,sans-serif;color:#899087}
+.page:after{content:none;display:none}
+.page .number{display:none}
 .kicker{font:700 11px Arial,sans-serif;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
-h1,h2,h3{line-height:1.16;color:#203c2e}
+h1,h2,h3{line-height:1.16;color:#303030}
 h1{font-size:48px;letter-spacing:-1.5px;margin:22px 0}
 h2{font-size:32px;margin:14px 0 24px}
 h3{font-size:19px;margin:26px 0 8px}
 p{font-size:16px;margin:0 0 15px}
-.lead{font-size:20px;line-height:1.55;color:#526257}
+.lead{font-size:20px;line-height:1.55;color:#626262}
 .small{font-size:13px;color:var(--muted)}
-.cover{display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#fdfbf5 0%,#f5f0e5 100%);padding-top:110px}
+.cover{display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#ffffff 0%,#f2f2f2 100%);padding-top:110px}
 .cover h1{font-size:66px;max-width:600px}
-.cover .subtitle{font-size:23px;max-width:520px;color:#59675d}
-.cover .author{margin-top:100px;font:700 14px Arial,sans-serif;letter-spacing:3px;color:var(--green)}
+.cover .subtitle{font-size:23px;max-width:520px;color:#666666}
+.cover .author{margin-top:100px;font:700 14px Arial,sans-serif;letter-spacing:3px;color:#B3262D}
 .rule{width:72px;height:4px;background:var(--gold);margin:28px 0}
-.callout{margin:24px 0;padding:18px 22px;border-left:3px solid var(--gold);background:#f5f1e8;color:#35463a}
-.quote{font-size:21px;line-height:1.5;color:#31513e;font-style:italic;margin:26px 0}
+.callout{margin:24px 0;padding:18px 22px;border-left:3px solid var(--gold);background:#f2f2f2;color:#303030}
+.quote{font-size:21px;line-height:1.5;color:#B3262D;font-style:italic;margin:26px 0}
 ul,ol{padding-left:24px;margin:10px 0 20px}
 li{margin:7px 0;font-size:15px}
 .toc{list-style:none;padding:0}
 .toc li{display:flex;gap:12px;border-bottom:1px dotted #cfc8b9;padding:8px 0}
-.toc b{color:var(--green);min-width:28px}
-.exercise{margin-top:22px;padding:18px;border:1px solid #dcd4c4;background:#fffefa}
-.exercise strong{display:block;color:var(--green);font:700 11px Arial,sans-serif;letter-spacing:1.2px;margin-bottom:8px}
-.example{padding:15px 18px;margin:15px 0;background:#f1f5ef;border-radius:2px}
-.example b{color:#28583f}
+.toc b{color:#B3262D;min-width:28px}
+.exercise{margin-top:22px;padding:18px;border:1px solid #dcd4c4;background:#ffffff}
+.exercise strong{display:block;color:#B3262D;font:700 11px Arial,sans-serif;letter-spacing:1.2px;margin-bottom:8px}
+.example{padding:15px 18px;margin:15px 0;background:#f2f2f2;border-radius:2px}
+.example b{color:#B3262D}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .end{display:flex;flex-direction:column;justify-content:center;text-align:center}
 .end h2{font-size:42px}
-a{color:var(--green)}
+a{color:#B3262D}
 @page{size:A5;margin:0}
 @media print{
+ body{background:#ffffff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .page:after,.page .number{display:none!important;content:none!important}
+
  body{background:white}
  .toolbar{display:none!important}
  .book{width:auto;margin:0;box-shadow:none}
- .page{width:148mm;height:210mm;min-height:210mm;padding:17mm 17mm 18mm;overflow:hidden;border:0}
+ .page{width:148mm;height:210mm;min-height:210mm;padding:17mm 17mm 17mm;overflow:hidden;border:0}
  .page:after{left:17mm;right:17mm;bottom:8mm}
  .page .number{right:17mm;bottom:7.8mm}
  p{font-size:10.2pt;line-height:1.55;margin-bottom:9pt}
